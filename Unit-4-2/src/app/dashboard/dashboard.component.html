@@ -1,0 +1,75 @@
+<div>
+  <h1 style="text-align-last: center">Team JB Details</h1>
+  <button type="button" style="margin-right: 10%; margin-left: 38%">
+    <a routerLink="/add" style="text-decoration: none; color: black"
+      >Add a New player</a
+    >
+  </button>
+  <label>Choose filter</label>
+  <select
+    class="select-option"
+    #mySelect
+    (change)="onOptionsSelected(mySelect.value)"
+  >
+    <option value="none">none</option>
+    <option value="get-right-handed-players">get-right-handed-players</option>
+    <option value="get-right-arm-spin-players">
+      get-right-arm-spin-players
+    </option>
+    <option value="get-players-by-runs">get-players-by-runs</option>
+    <option value="get-players-by-least-wickets">
+      get-players-by-least-wickets
+    </option>
+    <option value="get-players-by-left-handed">
+      get-players-by-left-handed
+    </option>
+  </select>
+
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <table style="width: 75%; margin-left: 13%">
+    <tr>
+      <th>Name</th>
+      <th>Batting</th>
+      <th>Bowling</th>
+      <th>Runs</th>
+      <th>Wickets</th>
+
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let post of data">
+      <td>{{ post?.Name }}</td>
+      <td>{{ post?.Batting }}</td>
+      <td>{{ post?.Bowling }}</td>
+      <td>{{ post?.Runs }}</td>
+      <td>{{ post?.Wickets }}</td>
+      <td>
+        <button type="button" style="margin-right: 15px">
+          <a
+            routerLink="/edit"
+            [state]="post"
+            style="text-decoration: none; color: black"
+            >Edit</a
+          >
+        </button>
+        <button type="button" (click)="deletePlayer(post._id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
